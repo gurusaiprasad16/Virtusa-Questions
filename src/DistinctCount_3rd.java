@@ -1,31 +1,22 @@
-import java.util.HashSet;
-import java.util.Set;
-
-public class DistinctCount_3rd
+public class DistinctCount 
 {
-    public static int uniqueMarblesCount(int S, int R, int K)
+    public static int countDistinctK(int[] arr) 
     {
-        Set<Integer> uniqueStates = new HashSet<>();
-        // DFS function
-        dfs(uniqueStates, S, R, K);
-        return uniqueStates.size();
+        int n = arr.length;
+        int count = 0;
+        for (int i = 1; i < n; i++) 
+        {
+            if (arr[i] != i + 1) 
+            {
+                count++;
+            }
+        }
+        return count;
     }
-    // Private DFS function
-    private static void dfs(Set<Integer> uniqueStates, int marbles, int R, int K)
+    public static void main(String[] args) 
     {
-        uniqueStates.add(marbles);
-        if (marbles >= R) {
-            dfs(uniqueStates, marbles - R, R, K);
-        }
-        if (marbles >= K) {
-            dfs(uniqueStates, marbles - K, R, K);
-        }
-    }
-    public static void main(String[] args) {
-        int S = 4;
-        int R = 1;
-        int K = 2;
-        int result = uniqueMarblesCount(S, R, K);
+        int[] arr = {1, 2, 3, 4}; // Replace with your array
+        int result = countDistinctK(arr);
         System.out.println(result);
     }
 }
